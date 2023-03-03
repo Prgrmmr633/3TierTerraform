@@ -12,7 +12,7 @@ data "aws_vpc" "default" {
   default = true
 }
 
-data "aws_key_pair" "cp_301_302" {
+data "aws_key_pair" "prgrmmr_633" {
   key_name = "prgrmmr_633"
 }
 
