@@ -1,4 +1,3 @@
-
 # Private Subnets
 resource "aws_subnet" "private_subnets" {
   for_each   = var.private_subnets
@@ -11,8 +10,8 @@ resource "aws_subnet" "private_subnets" {
 }
 
 # Security Groups
-resource "aws_security_group" "cp_301_302_sg_dev" {
-  name        = "cp_301_302_sg_dev"
+resource "aws_security_group" "sg_prgrmmr_633" {
+  name        = "sg_prgrmmr_633"
   description = "Allow inbound traffic"
   vpc_id      = data.aws_vpc.default.id
   ingress {
@@ -30,23 +29,21 @@ resource "aws_security_group" "cp_301_302_sg_dev" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name    = "cp_301_302_sg_dev"
+    Name    = "sg_prgrmmr_633"
     Purpose = "For dev"
   }
 }
 
-
-resource "aws_instance" "cp_301_302_sg_dev" {
-  ami                         = "ami-06e85d4c3149db26a"
+resource "aws_instance" "sg_prgrmmr_633" {
+  ami                         = "ami-0b029b1931b347543"
   instance_type               = "t2.micro"
-  subnet_id                   = aws_subnet.private_subnets["cp_301_302_sg_dev"].id
-  security_groups             = [aws_security_group.cp_301_302_sg_dev.id]
+  subnet_id                   = aws_subnet.private_subnets["sg_prgrmmr_633"].id
+  security_groups             = [aws_security_group.sg_prgrmmr_633.id]
   associate_public_ip_address = true
-  key_name                    = data.aws_key_pair.cp_301_302.key_name
+  key_name                    = data.aws_key_pair.prgrmmr_633.key_name
   #   iam_instance_profile        = "CloudWatchAgentServerPolicy"
 
   tags = {
-    Name = "cp_301_302-dev"
+    Name = "prgrmmr_633-dev"
   }
 }
-
