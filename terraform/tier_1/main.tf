@@ -10,8 +10,8 @@ resource "aws_subnet" "private_subnets" {
 }
 
 # Security Groups
-resource "aws_security_group" "sg_prgrmmr_633_development" {
-  name        = "sg_prgrmmr_633_development"
+resource "aws_security_group" "sg_prgrmmr_633_develop" {
+  name        = "sg_prgrmmr_633_develop"
   description = "Allow inbound traffic"
   vpc_id      = data.aws_vpc.default.id
   ingress {
@@ -29,21 +29,21 @@ resource "aws_security_group" "sg_prgrmmr_633_development" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   tags = {
-    Name    = "sg_prgrmmr_633_development"
-    Purpose = "For development"
+    Name    = "sg_prgrmmr_633_develop"
+    Purpose = "For develop"
   }
 }
 
-resource "aws_instance" "sg_prgrmmr_633_development" {
+resource "aws_instance" "sg_prgrmmr_633_develop" {
   ami                         = "ami-0b029b1931b347543"
   instance_type               = "t2.micro"
-  subnet_id                   = aws_subnet.private_subnets["sg_prgrmmr_633_development"].id
-  security_groups             = [aws_security_group.sg_prgrmmr_633_development.id]
+  subnet_id                   = aws_subnet.private_subnets["sg_prgrmmr_633_develop"].id
+  security_groups             = [aws_security_group.sg_prgrmmr_633_develop.id]
   associate_public_ip_address = true
   key_name                    = data.aws_key_pair.prgrmmr_633.key_name
   #   iam_instance_profile        = "CloudWatchAgentServerPolicy"
 
   tags = {
-    Name = "prgrmmr_633-development"
+    Name = "prgrmmr_633-develop"
   }
 }

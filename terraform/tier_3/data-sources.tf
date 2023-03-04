@@ -18,6 +18,6 @@ data "aws_key_pair" "prgrmmr_633" {
 
 variable "private_subnets" {
   default = {
-    "sg_prgrmmr_633_management"  = 122
+    "sg_prgrmmr_633_manage"  = 233
   }
 }
